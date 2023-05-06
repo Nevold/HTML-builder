@@ -24,4 +24,4 @@ stdin.on('data', function (chunk) {
 
 stdin.on('error', handleError).pipe(writeStream);
 
-process.on('SIGINT', () => handleEnd('Ctrl+C'));
+process.on('SIGINT', handleEnd.bind(null, 'Ctrl+C'));
