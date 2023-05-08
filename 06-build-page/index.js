@@ -34,7 +34,7 @@ async function mergeTemplateHtml() {
   const files = await readdir(filePathHtmlComponents);
 
   let indexHtml = await readFile(templatePathHtml, 'utf-8');
-  const promisesFiles = files.map(async (file) => {
+  files.forEach(async (file) => {
     const templateSourceObj = {};
     const currentFilePath = path.join(filePathHtmlComponents, file);
     const fileStatus = await stat(currentFilePath);
@@ -53,7 +53,6 @@ async function mergeTemplateHtml() {
       });
     }
   });
-  Promise.all(promisesFiles);
 }
 
 async function copyDirectoryFile(copyDir = filePathAssets, copyDirBuild = filePathAssetsCopy) {
